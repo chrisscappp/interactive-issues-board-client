@@ -1,0 +1,70 @@
+:root {
+	font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+	// Padding
+	--padding-xs: 10px 14px;
+	--padding-s: 16px 20px;
+	--padding-m: 26px 36px;
+	--padding-l: 42px 52px;
+	--padding-xl: 58px 68px;
+
+	// Gap
+	--gap-4: 4px;
+	--gap-8: 8px;
+	--gap-12: 12px;
+	--gap-16: 16px;
+	--gap-20: 20px;
+	--gap-24: 24px;
+	--gap-28: 28px;
+	--gap-32: 32px;
+	--gap-36: 36px;
+	--gap-40: 40px;
+	--gap-64: 64px;
+
+	// Colors
+	--carg-bg: #fff;
+	--loader-color: rgb(27, 27, 193);
+
+	// Layout
+	--main-content-width: 1280px;
+
+	// Text
+	--font-size-s-text: 16px;
+	--font-size-s-title: 24px;
+	--font-line-s-text: 16px;
+	--font-line-s-title: 26px;
+
+	--font-size-m-text: 20px;
+	--font-size-m-title: 32px;
+	--font-line-m-text: 25px;
+	--font-line-m-title: 38px;
+
+	--font-size-l-text: 24px;
+	--font-size-l-title: 36px;
+	--font-line-l-text: 28px;
+	--font-line-l-title: 44px;
+
+	--font-size-xl-text: 38px;
+	--font-size-xl-title: 50px;
+	--font-line-xl-text: 40px;
+	--font-line-xl-title: 52px;
+
+	--primary-text-color: #131313;
+	--secondary-text-color: #fff;
+	--blue-text-color: rgb(27, 27, 193);
+
+	// Button
+	--button-primary: rgb(27, 27, 193);
+	--button-hovered-text: #636363;
+	--button-s-height: 32px;
+	--button-m-height: 44px;
+	--button-l-height: 52px;
+	--button-xl-height: 64px;
+
+	// Input
+	--input-bg-color: rgb(248, 248, 248);
+	--input-border-color: rgb(222, 222, 222);
+
+	// z-index
+	--z-index-navbar: 100;
+}
