@@ -1,0 +1,101 @@
+.Flex {
+	display: flex;
+}
+
+.justifyStart {
+	justify-content: start;
+}
+
+.justifyCenter {
+	justify-content: center;
+}
+
+.justifyEnd {
+	justify-content: end;
+}
+
+.justifyBetween {
+	justify-content: space-between;
+}
+
+.justifyAround {
+	justify-content: space-around;
+}
+
+.justifyEvenly {
+	justify-content: space-evenly;
+}
+
+.alignStart {
+	align-items: start;
+}
+
+.alignCenter {
+	align-items: center;
+}
+
+.alignEnd {
+	align-items: end;
+}
+
+.directionRow {
+	flex-direction: row;
+}
+
+.directionColumn {
+	flex-direction: column;
+}
+
+.gap4 {
+	gap: var(--gap-4);
+}
+
+.gap8 {
+	gap: var(--gap-8);
+}
+
+.gap12 {
+	gap: var(--gap-12);
+}
+
+.gap16 {
+	gap: var(--gap-16);
+}
+
+.gap20 {
+	gap: var(--gap-20);
+}
+
+.gap24 {
+	gap: var(--gap-24);
+}
+
+.gap28 {
+	gap: var(--gap-24);
+}
+
+.gap32 {
+	gap: var(--gap-32);
+}
+
+.gap36 {
+	gap: var(--gap-36);
+}
+
+.gap40 {
+	gap: var(--gap-40);
+}
+
+.gap64 {
+	gap: var(--gap-64);
+}
+
+.max {
+	width: 100%;
+}
+
+.flexWrap {
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: center;
+}
