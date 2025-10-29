@@ -5,11 +5,11 @@ import { tanstackRouter } from '@tanstack/router-vite-plugin'
 
 export default defineConfig(async () => ({
 	plugins: [
-		react(),
 		tanstackRouter({
       		target: 'react',
       		autoCodeSplitting: true,
     	}),
+		react(),
 		svgr()
 	],
 	resolve: {
