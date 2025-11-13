@@ -1,7 +1,6 @@
-import type { NavbarRoutesPath } from '../types/navbar'
+import type { NavbarRoutesPath } from '@/shared/config/router/types'
 
 export const navbarConfig: OptionalRecord<NavbarRoutesPath, string> = {
-	// @ts-ignore
 	'/': 'Главная',
 	'/about': 'О нас'
 }

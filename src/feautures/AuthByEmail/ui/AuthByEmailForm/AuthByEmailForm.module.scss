@@ -1,0 +1,8 @@
+.forgetPassword {
+	margin-left: auto;
+	color: var(--blue-text-color);
+	transition: 0.3s;
+	&:hover {
+		opacity: 0.7;
+	}
+}

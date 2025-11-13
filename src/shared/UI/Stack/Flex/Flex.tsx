@@ -1,6 +1,5 @@
 import { memo, type ReactNode } from 'react'
-import { classNames } from '../../../lib/helpers/classNames/classNames'
-import type { Mods } from '../../../lib/helpers/classNames/classNames'
+import { classNames, type Mods } from '../../../lib/helpers/classNames/classNames'
 import cls from './Flex.module.scss'
 
 export type FlexHTMLTag = 'div' | 'article' | 'section'
