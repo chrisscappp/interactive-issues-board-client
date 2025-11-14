@@ -3,3 +3,7 @@ export interface IGeneral {
 	createdAt: Date,
 	updatedAt: Date
 }
+
+export interface IBaseResponse {
+	message: string
+}

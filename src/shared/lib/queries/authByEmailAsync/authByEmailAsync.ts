@@ -5,9 +5,9 @@ import { refreshAuthToken } from '@/shared/api/refreshAuthToken'
 import axios, { AxiosError } from 'axios'
 import { ApiMessage } from '@/shared/consts/apiMessages'
 import type { AuthByEmailFormValues } from '@/feautures/AuthByEmail'
+import type { IBaseResponse } from '@/shared/types/api'
 
-export interface AuthByEmailResponse {
-	message: string,
+export interface AuthByEmailResponse extends IBaseResponse {
 	accessToken: string,
 	refreshToken: string,
 	user: IUser

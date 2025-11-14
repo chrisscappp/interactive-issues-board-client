@@ -5,10 +5,11 @@ import { ISSUES_USER_ACCESS_TOKEN, ISSUES_USER_REFRESH_TOKEN, ISSUES_USER_ID } f
 import { refreshAuthToken } from '@/shared/api/refreshAuthToken'
 import axios, { AxiosError } from 'axios'
 import { ApiMessage } from '@/shared/consts/apiMessages'
+import type { IBaseResponse } from '@/shared/types/api'
 
 type RegisterByEmailData = Omit<RegisterByEmailFormValues, 'repeatPassword' | 'isAgree'>
 
-export interface RegisterByEmailResponse {
+export interface RegisterByEmailResponse extends IBaseResponse {
 	message: string,
 	accessToken: string,
 	refreshToken: string,
