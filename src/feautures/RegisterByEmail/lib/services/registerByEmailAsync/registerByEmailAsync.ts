@@ -24,9 +24,9 @@ export const registerByEmailAsync = async (data: RegisterByEmailData) => {
 			throw new Error('Data is not defined')
 		}
 			
-		localStorage.setItem(ISSUES_USER_ACCESS_TOKEN, JSON.stringify(response.data.accessToken))
-		localStorage.setItem(ISSUES_USER_REFRESH_TOKEN, JSON.stringify(response.data.refreshToken))
-		localStorage.setItem(ISSUES_USER_ID, JSON.stringify(response.data.user.id))	
+		localStorage.setItem(ISSUES_USER_ACCESS_TOKEN, response.data.accessToken)
+		localStorage.setItem(ISSUES_USER_REFRESH_TOKEN, response.data.refreshToken)
+		localStorage.setItem(ISSUES_USER_ID, String(response.data.user.id))	
 
 		$api.interceptors.request.use((config) => {
 			config.headers.Authorization = `Bearer ${response.data.accessToken}`

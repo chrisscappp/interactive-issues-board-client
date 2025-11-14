@@ -23,7 +23,7 @@ export const Card = memo((props: CardProps) => {
 		className,
 		isHover,
 		showBorder,
-		padding = 'm',
+		padding='m',
 		children
 	} = props
 

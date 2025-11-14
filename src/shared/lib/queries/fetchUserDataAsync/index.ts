@@ -1,0 +1,1 @@
+export { fetchUserDataAsync } from './fetchUserDataAsync'
