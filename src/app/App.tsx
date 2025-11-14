@@ -1,7 +1,6 @@
 import './styles/index.scss'
 import { RouterProvider, createRouter } from '@tanstack/react-router'
 import { routeTree } from '../routeTree.gen'
-import { useAuthData } from '@/shared/lib/hooks/useAuthData/useAuthData'
 
 const router = createRouter({ routeTree })
 
@@ -13,10 +12,6 @@ declare module '@tanstack/react-router' {
 }
 
 function App() {
-
-  const { fetchAuthDataQuery } = useAuthData()
-
-  console.log('form app', fetchAuthDataQuery.data)
 
   return (
     <div className="app">

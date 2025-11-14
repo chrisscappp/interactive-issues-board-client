@@ -9,11 +9,17 @@ import { AuthByEmailModal } from '@/feautures/AuthByEmail'
 import { RegisterByEmailModal } from '@/feautures/RegisterByEmail'
 import { useAuthData } from '@/shared/lib/hooks/useAuthData/useAuthData'
 
-export const Navbar = memo(() => {
+interface NavbarProps {
+	className?: string,
+}
+
+export const Navbar = memo(({ className }: NavbarProps) => {
 	
-	const { isAuth, onLogout } = useAuthData()
 	const [isOpenAuthModal, setIsOpenAuthModal] = useState(false)
 	const [isOpenRegisterModal, setIsOpenRegisterModal] = useState(false)
+	const { onLogout, fetchAuthDataQuery, authData } = useAuthData()
+
+	console.log('form app', authData)
 
 	const onOpenAuthModal = useCallback(() => {
 		setIsOpenAuthModal(true)
@@ -45,7 +51,7 @@ export const Navbar = memo(() => {
 	)
 
 	return (
-		<nav className={classNames(cls.Navbar)}>
+		<nav className={classNames(cls.Navbar, {}, [className])}>
 			<HStack className={cls.panel} gap="32" align="center">
 				{Object.entries(navbarConfig).map(([to, title]) => (
 					<Link 
@@ -57,9 +63,11 @@ export const Navbar = memo(() => {
 						{title}
 					</Link>
 				))}
-				<HStack className={cls.btns} gap="12">
-					{isAuth ? authButtons : defaultButtons}
-				</HStack>
+				{!fetchAuthDataQuery.isLoading && (
+					<HStack className={cls.btns} gap="12">
+						{authData ? authButtons : defaultButtons}
+					</HStack>
+				)}
 			</HStack>
 			{isOpenAuthModal && (
 				<AuthByEmailModal
