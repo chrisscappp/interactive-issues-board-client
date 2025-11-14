@@ -18,7 +18,6 @@ type ButtonTheme = {
 type ButtonSize = {
 	size_s: 'size_s',
 	size_m: 'size_m',
-	size_ml:  'size_ml',
 	size_l: 'size_l',
 	size_xl: 'size_xl'
 }

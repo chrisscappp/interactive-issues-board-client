@@ -8,6 +8,9 @@ import { Button } from '@/shared/UI/Button'
 import { AuthByEmailModal } from '@/feautures/AuthByEmail'
 import { RegisterByEmailModal } from '@/feautures/RegisterByEmail'
 import { useAuthData } from '@/shared/lib/hooks/useAuthData/useAuthData'
+import { Dropdown } from '@/shared/UI/Dropdown'
+import { Text } from '@/shared/UI/Text'
+import { Avatar } from '@/shared/UI/Avatar'
 
 interface NavbarProps {
 	className?: string,
@@ -46,7 +49,24 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 
 	const authButtons = (
 		<>
-			<Button onClick={onLogout} theme="outlineInverted">Выйти</Button>
+			<Dropdown
+				name="navbar"
+				button={<Avatar avatar={authData?.avatar} />}
+				items={[
+					{
+						content: <Text text="Мой профиль"/>,
+						href: '/forgetPassword'
+					},
+					{
+						content: <Text text="Мои доски"/>,
+						href: '/forgetPassword'
+					},
+					{
+						content: <Text text="Выйти"/>,
+						onClick: onLogout
+					}
+				]}
+			/>
 		</>
 	)
 
