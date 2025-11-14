@@ -1,0 +1,64 @@
+.Modal {
+	position: fixed;
+  	right: 0;
+  	left: 0;
+  	bottom: 0;
+  	top: 0;
+  	opacity: 0;
+  	pointer-events: none;
+  	z-index: var(--modal-zindex);
+  	max-width: 100%;
+  	animation: spawn-modal 0.3s forwards;
+}
+
+@keyframes spawn-modal {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+.overlay {
+	width: 100%;
+	height: 100%;
+	background: var(--overlay-color);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+.content {
+	padding: 20px 30px;
+	border-radius: 12px;
+	background: var(--bg-color);
+	max-width: 50%;
+	width: 100%;
+	max-height: 600px;
+	box-shadow: 0px 9px 24px 0px rgba(0, 0, 0, 0.18);
+	position: relative;
+	overflow: auto;
+}
+
+.opened {
+	pointer-events: auto;
+}
+
+.cross {
+	width: 42px;
+	height: 42px;
+	position: absolute;
+	top: 8px;
+	right: 8px;
+}
+
+.isClosing {
+	.overlay,
+	.contentOpened {
+		opacity: 0;
+		transition: opacity 0.3s;
+	}
+}

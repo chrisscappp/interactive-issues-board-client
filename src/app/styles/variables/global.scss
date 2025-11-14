@@ -1,6 +1,9 @@
 :root {
 	font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 
+	// App
+	--bg-color: #f7f7f7;
+
 	// Padding
 	--padding-xs: 10px 14px;
 	--padding-s: 16px 20px;
@@ -23,7 +26,14 @@
 
 	// Colors
 	--carg-bg: #fff;
-	--loader-color: rgb(27, 27, 193);
+	--red-light: rgb(255, 0, 0);
+	--approve-light: rgb(31, 206, 31);
+	--blue-dark: #0a1a82;
+	--overlay-color: rgba(0 0 0 / 50%);
+
+	// Loader
+	--white-loader-color: #fff;
+	--blue-loader-color: rgb(27, 27, 193);
 
 	// Layout
 	--main-content-width: 1680px;
@@ -60,4 +70,12 @@
 	--button-m-height: 44px;
 	--button-l-height: 52px;
 	--button-xl-height: 64px;
+
+	// Input
+	--input-bg-color: #efefef;
+	--input-focused-color: #2a2aff;
+
+	// z-index
+	--modal-zindex: 150;
+	--overlay-zindex: -1;
 }

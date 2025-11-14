@@ -1,0 +1,140 @@
+.Button {
+	cursor: pointer;
+	color: var(--secondary-text-color);
+	padding: 6px 20px;
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.background {
+	background: var(--button-primary);
+	color: var(--secondary-text-color);
+	border: none;
+
+	&:hover {
+		opacity: 0.7;
+		transition: 0.3s;
+	}
+}
+
+.backgroundInverted {
+	background: var(--secondary-text-color);
+	color: var(--primary-text-color);
+	border: none;
+
+	&:hover {
+		opacity: 0.7;
+		transition: 0.3s;
+	}
+}
+
+.outline {
+	border: 1.5px solid var(--button-primary);
+	background: none;
+	color: var(--button-primary);
+
+	&:hover {
+		background: var(--button-primary);
+		color: var(--secondary-text-color);
+		transition: 0.3s;
+	}
+}
+
+.outlineInverted {
+	border: 1.5px solid var(--secondary-text-color);
+	background: none;
+	color: var(--secondary-text-color);
+
+	&:hover {
+		background: var(--secondary-text-color);
+		color: var(--primary-text-color);
+		transition: 0.3s;
+	}
+}
+
+.clear {
+	color: var(--primary-text-color);
+	padding: 0;
+	background: none;
+	border: none;
+	outline: none;
+
+	&:hover {
+		opacity: 0.7;
+		transition: 0.3s;
+	}
+}
+
+.error {
+	background: var(--red-light);
+	border: none;
+	color: var(--secondary-text-color);
+
+	&:hover {
+		opacity: 0.5;
+		transition: 0.3s;
+	}
+}
+
+.errorOutline {
+	border: 1.5px solid var(--red-light);
+	background: none;
+	color: var(--red-light);
+
+	&:hover {
+		background: var(--red-light);
+		color: white;
+		transition: 0.3s;
+	}
+}
+
+.approve {
+	background: var(--approve-light);
+	border: none;
+	color: var(--secondary-text-color);
+
+	&:hover {
+		opacity: 0.7;
+		transition: 0.3s;
+	}
+}
+
+.approveOutline {
+	border: 1.5px solid var(--approve-light);
+	background: none;
+	color: var(--primary-text-color);
+
+	&:hover {
+		background: var(--approve-light);
+		color: var(--secondary-text-color);
+		transition: 0.3s;
+	}
+}
+
+.size_s {
+	padding: 8px 36px;
+	font-size: var(--font-size-s-text);
+}
+
+.size_m {
+	padding: 10px 44px;
+	font-size: var(--font-size-m-text);
+}
+
+.size_l {
+	padding: 12px 50px;
+	font-size: var(--font-size-l-text);
+}
+
+.size_xl {
+	padding: 14px 56px;
+	font-size: var(--font-size-xl-text);
+}
+
+.loading,
+.disabled {
+	opacity: 0.5;
+	pointer-events: none;
+}

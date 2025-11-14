@@ -13,8 +13,16 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 
+const ForgetPasswordLazyRouteImport = createFileRoute('/forgetPassword')()
 const AboutLazyRouteImport = createFileRoute('/about')()
 
+const ForgetPasswordLazyRoute = ForgetPasswordLazyRouteImport.update({
+  id: '/forgetPassword',
+  path: '/forgetPassword',
+  getParentRoute: () => rootRouteImport,
+} as any).lazy(() =>
+  import('./routes/forgetPassword.lazy').then((d) => d.Route),
+)
 const AboutLazyRoute = AboutLazyRouteImport.update({
   id: '/about',
   path: '/about',
@@ -29,31 +37,42 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutLazyRoute
+  '/forgetPassword': typeof ForgetPasswordLazyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutLazyRoute
+  '/forgetPassword': typeof ForgetPasswordLazyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutLazyRoute
+  '/forgetPassword': typeof ForgetPasswordLazyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about'
+  fullPaths: '/' | '/about' | '/forgetPassword'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about'
-  id: '__root__' | '/' | '/about'
+  to: '/' | '/about' | '/forgetPassword'
+  id: '__root__' | '/' | '/about' | '/forgetPassword'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutLazyRoute: typeof AboutLazyRoute
+  ForgetPasswordLazyRoute: typeof ForgetPasswordLazyRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/forgetPassword': {
+      id: '/forgetPassword'
+      path: '/forgetPassword'
+      fullPath: '/forgetPassword'
+      preLoaderRoute: typeof ForgetPasswordLazyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -74,6 +93,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutLazyRoute: AboutLazyRoute,
+  ForgetPasswordLazyRoute: ForgetPasswordLazyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
