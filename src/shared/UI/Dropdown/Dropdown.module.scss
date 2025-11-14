@@ -1,0 +1,42 @@
+.menuItems {
+	margin-top: 6px;
+	max-width: 100%;
+	display: flex;
+	flex-direction: column;
+	border: 1.5px solid gray;
+	border-radius: 12px;
+}
+
+.triggerBtn {
+	padding: 0;
+}
+
+.MenuItemBtn {
+	cursor: pointer;
+	border: none;
+	width: 240px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 12px;
+	background: var(--bg-color);
+}
+
+.MenuItemBtn:disabled {
+	pointer-events: none;
+	opacity: 0.7;
+}
+
+.even {
+	background: var(--carg-bg);
+}
+
+.MenuItemBtn,
+.link {
+	text-decoration: none;
+
+	&:hover {
+		transition: 0.3s;
+		background: #c1c2ff;
+	}
+}
