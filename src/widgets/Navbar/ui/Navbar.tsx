@@ -22,8 +22,6 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 	const [isOpenRegisterModal, setIsOpenRegisterModal] = useState(false)
 	const { onLogout, fetchAuthDataQuery, authData } = useAuthData()
 
-	console.log('form app', authData)
-
 	const onOpenAuthModal = useCallback(() => {
 		setIsOpenAuthModal(true)
 	}, [])

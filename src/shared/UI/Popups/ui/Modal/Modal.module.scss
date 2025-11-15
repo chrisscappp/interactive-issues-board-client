@@ -9,6 +9,9 @@
   	z-index: var(--modal-zindex);
   	max-width: 100%;
   	animation: spawn-modal 0.3s forwards;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 @keyframes spawn-modal {
@@ -21,16 +24,6 @@
 	}
 }
 
-.overlay {
-	width: 100%;
-	height: 100%;
-	background: var(--overlay-color);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	position: relative;
-}
-
 .content {
 	padding: 20px 30px;
 	border-radius: 12px;
@@ -41,24 +34,4 @@
 	box-shadow: 0px 9px 24px 0px rgba(0, 0, 0, 0.18);
 	position: relative;
 	overflow: auto;
-}
-
-.opened {
-	pointer-events: auto;
-}
-
-.cross {
-	width: 42px;
-	height: 42px;
-	position: absolute;
-	top: 8px;
-	right: 8px;
-}
-
-.isClosing {
-	.overlay,
-	.contentOpened {
-		opacity: 0;
-		transition: opacity 0.3s;
-	}
 }
