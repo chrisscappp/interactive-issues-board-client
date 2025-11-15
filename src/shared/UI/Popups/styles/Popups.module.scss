@@ -1,0 +1,21 @@
+.opened {
+	pointer-events: auto;
+}
+
+.cross {
+	width: 42px;
+	height: 42px;
+	position: absolute;
+	top: 8px;
+	right: 8px;
+}
+
+.isClosing {
+	opacity: 0;
+	transition: opacity 0.3s;
+
+	.overlay {
+		opacity: 0;
+		transition: opacity 0.3s;
+	}
+}

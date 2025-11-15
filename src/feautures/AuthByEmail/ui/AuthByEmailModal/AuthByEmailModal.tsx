@@ -1,8 +1,9 @@
 import { classNames } from '@/shared/lib/helpers/classNames/classNames'
 import { Suspense } from 'react'
-import { Modal } from '@/shared/UI/Modal'
+import { Drawer, Modal } from '@/shared/UI/Popups'
 import { AuthByEmailFormAsync } from '../AuthByEmailForm/AuthByEmailForm.lazy'
 import { Loader } from '@/shared/UI/Loader'
+import { RenderComponentByScreen } from '@/shared/lib/components/ScreenView'
 
 interface AuthByEmailModalProps {
 	className?: string,
@@ -11,17 +12,35 @@ interface AuthByEmailModalProps {
 }
 
 export const AuthByEmailModal = ({ className, isOpen, onClose }: AuthByEmailModalProps) => {
+
+	const content = (
+		<Suspense fallback={<Loader/>}>
+			<AuthByEmailFormAsync
+				onSuccess={onClose}
+			/>
+		</Suspense>
+	)
+	
 	return (
-		<Modal 
-			className={classNames('', {}, [className])}
-			isOpen={isOpen}
-			onClose={onClose}
-		>
-			<Suspense fallback={<Loader/>}>
-				<AuthByEmailFormAsync
-					onSuccess={onClose}
-				/>
-			</Suspense>
-		</Modal>
+		<RenderComponentByScreen
+			DesktopView={
+				<Modal 
+					className={classNames('', {}, [className])}
+					isOpen={isOpen}
+					onClose={onClose}
+				>
+					{content}
+				</Modal>
+			}
+			MobileView={
+				<Drawer 
+					className={classNames('', {}, [className])}
+					isOpen={isOpen}
+					onClose={onClose}
+				>
+					{content}
+				</Drawer>
+			}
+		/>
 	)
 }
