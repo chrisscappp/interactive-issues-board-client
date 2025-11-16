@@ -11,10 +11,17 @@
 import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
 
 const ForgetPasswordLazyRouteImport = createFileRoute('/forgetPassword')()
 const AboutLazyRouteImport = createFileRoute('/about')()
+const AuthenticatedBoardsLazyRouteImport = createFileRoute(
+  '/_authenticated/boards',
+)()
+const AuthenticatedProfileProfileidLazyRouteImport = createFileRoute(
+  '/_authenticated/profile/$profileid',
+)()
 
 const ForgetPasswordLazyRoute = ForgetPasswordLazyRouteImport.update({
   id: '/forgetPassword',
@@ -28,38 +35,79 @@ const AboutLazyRoute = AboutLazyRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any).lazy(() => import('./routes/about.lazy').then((d) => d.Route))
+const AuthenticatedRoute = AuthenticatedRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedBoardsLazyRoute = AuthenticatedBoardsLazyRouteImport.update({
+  id: '/boards',
+  path: '/boards',
+  getParentRoute: () => AuthenticatedRoute,
+} as any).lazy(() =>
+  import('./routes/_authenticated/boards.lazy').then((d) => d.Route),
+)
+const AuthenticatedProfileProfileidLazyRoute =
+  AuthenticatedProfileProfileidLazyRouteImport.update({
+    id: '/profile/$profileid',
+    path: '/profile/$profileid',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any).lazy(() =>
+    import('./routes/_authenticated/profile/$profileid.lazy').then(
+      (d) => d.Route,
+    ),
+  )
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutLazyRoute
   '/forgetPassword': typeof ForgetPasswordLazyRoute
+  '/boards': typeof AuthenticatedBoardsLazyRoute
+  '/profile/$profileid': typeof AuthenticatedProfileProfileidLazyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutLazyRoute
   '/forgetPassword': typeof ForgetPasswordLazyRoute
+  '/boards': typeof AuthenticatedBoardsLazyRoute
+  '/profile/$profileid': typeof AuthenticatedProfileProfileidLazyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/about': typeof AboutLazyRoute
   '/forgetPassword': typeof ForgetPasswordLazyRoute
+  '/_authenticated/boards': typeof AuthenticatedBoardsLazyRoute
+  '/_authenticated/profile/$profileid': typeof AuthenticatedProfileProfileidLazyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/forgetPassword'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/forgetPassword'
+    | '/boards'
+    | '/profile/$profileid'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/forgetPassword'
-  id: '__root__' | '/' | '/about' | '/forgetPassword'
+  to: '/' | '/about' | '/forgetPassword' | '/boards' | '/profile/$profileid'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/about'
+    | '/forgetPassword'
+    | '/_authenticated/boards'
+    | '/_authenticated/profile/$profileid'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
   AboutLazyRoute: typeof AboutLazyRoute
   ForgetPasswordLazyRoute: typeof ForgetPasswordLazyRoute
 }
@@ -80,6 +128,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutLazyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AuthenticatedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -87,11 +142,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/boards': {
+      id: '/_authenticated/boards'
+      path: '/boards'
+      fullPath: '/boards'
+      preLoaderRoute: typeof AuthenticatedBoardsLazyRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/profile/$profileid': {
+      id: '/_authenticated/profile/$profileid'
+      path: '/profile/$profileid'
+      fullPath: '/profile/$profileid'
+      preLoaderRoute: typeof AuthenticatedProfileProfileidLazyRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
   }
 }
 
+interface AuthenticatedRouteChildren {
+  AuthenticatedBoardsLazyRoute: typeof AuthenticatedBoardsLazyRoute
+  AuthenticatedProfileProfileidLazyRoute: typeof AuthenticatedProfileProfileidLazyRoute
+}
+
+const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedBoardsLazyRoute: AuthenticatedBoardsLazyRoute,
+  AuthenticatedProfileProfileidLazyRoute:
+    AuthenticatedProfileProfileidLazyRoute,
+}
+
+const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
+  AuthenticatedRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRoute: AuthenticatedRouteWithChildren,
   AboutLazyRoute: AboutLazyRoute,
   ForgetPasswordLazyRoute: ForgetPasswordLazyRoute,
 }

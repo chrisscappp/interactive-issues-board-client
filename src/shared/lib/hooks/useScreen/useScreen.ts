@@ -5,8 +5,6 @@ export const useScreen = () => {
 	const screenWidth = window.screen.width
 	const screenHeight = window.screen.height
 
-	console.log('init')
-
 	return {
 		screenHeight,
 		screenWidth,
