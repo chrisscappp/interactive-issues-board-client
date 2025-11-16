@@ -2,7 +2,7 @@ import { classNames } from '@/shared/lib/helpers/classNames/classNames'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { memo, type ReactNode, Fragment } from 'react'
 import cls from './Dropdown.module.scss'
-import { Link } from '@tanstack/react-router'
+import { Link, type LinkOptions } from '@tanstack/react-router'
 import type { NavbarRoutesPath } from '@/shared/config/router/types'
 import { Button } from '../Button'
 
@@ -10,7 +10,9 @@ interface DropdownItem {
 	disabled?: boolean,
 	content?: ReactNode,
 	onClick?: () => void,
-	href?: NavbarRoutesPath
+	href?: NavbarRoutesPath,
+	params?: LinkOptions['params'],
+	search?: LinkOptions['search']
 }
 
 interface DropdownProps {
@@ -54,8 +56,12 @@ export const Dropdown = memo((props: DropdownProps) => {
 							<MenuItem 
 								as={Link}
 								key={item.href}
-								to={item.href} 
 								className={cls.link}
+								to={item.href}
+								//@ts-ignore
+								params={item.params}
+								//@ts-ignore
+								search={item.search}
 							>
 								{content}
 							</MenuItem>

@@ -46,26 +46,25 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 	)
 
 	const authButtons = (
-		<>
-			<Dropdown
-				name="navbar"
-				button={<Avatar avatar={authData?.avatar} />}
-				items={[
-					{
-						content: <Text text="Мой профиль"/>,
-						href: '/forgetPassword'
-					},
-					{
-						content: <Text text="Мои доски"/>,
-						href: '/forgetPassword'
-					},
-					{
-						content: <Text text="Выйти"/>,
-						onClick: onLogout
-					}
-				]}
-			/>
-		</>
+		<Dropdown
+			name="navbar"
+			button={<Avatar avatar={authData?.avatar} />}
+			items={[
+				{
+					content: <Text text="Мой профиль"/>,
+					href: '/profile/$profileid',
+					params: { profileid: String(authData?.id) }
+				},
+				{
+					content: <Text text="Мои доски"/>,
+					href: '/boards'
+				},
+				{
+					content: <Text text="Выйти"/>,
+					onClick: onLogout
+				}
+			]}
+		/>
 	)
 
 	return (
