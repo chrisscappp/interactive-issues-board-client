@@ -3,9 +3,9 @@ import type { IUser } from '@/entities/User'
 import { ISSUES_USER_ACCESS_TOKEN, ISSUES_USER_REFRESH_TOKEN, ISSUES_USER_ID } from '@/shared/consts/localStorageKeys'
 import { refreshAuthToken } from '@/shared/api/refreshAuthToken'
 import axios, { AxiosError } from 'axios'
-import { ApiMessage } from '@/shared/consts/apiMessages'
+import { ApiMessage, apiMessages } from '@/shared/consts/apiMessages'
 import type { AuthByEmailFormValues } from '@/feautures/AuthByEmail'
-import type { IBaseResponse } from '@/shared/types/api'
+import type { IBaseResponse, IErrorResponseData } from '@/shared/types/api'
 
 export interface AuthByEmailResponse extends IBaseResponse {
 	accessToken: string,
@@ -18,7 +18,7 @@ export const authByEmailAsync = async (data: AuthByEmailFormValues) => {
 		const response = await $api.post<AuthByEmailResponse>('/login', data)
 		
 		if (!response.data) {
-			throw new Error('Data is not defined')
+			throw new Error(apiMessages['empty_data'])
 		}
 			
 		localStorage.setItem(ISSUES_USER_ACCESS_TOKEN, response.data.accessToken)
@@ -54,7 +54,10 @@ export const authByEmailAsync = async (data: AuthByEmailFormValues) => {
 
 		return response.data
 	} catch (e: unknown) {
-		const err = e as AxiosError
-		throw new Error(err.message)
+		const err = e as AxiosError<IErrorResponseData>
+		if (err.response?.data.message) {
+			throw new Error(apiMessages[err.response.data.message])
+		}
+		throw new Error(apiMessages['server_error'])
 	}
 }

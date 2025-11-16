@@ -4,8 +4,8 @@ import type { IUser } from '@/entities/User'
 import { ISSUES_USER_ACCESS_TOKEN, ISSUES_USER_REFRESH_TOKEN, ISSUES_USER_ID } from '@/shared/consts/localStorageKeys'
 import { refreshAuthToken } from '@/shared/api/refreshAuthToken'
 import axios, { AxiosError } from 'axios'
-import { ApiMessage } from '@/shared/consts/apiMessages'
-import type { IBaseResponse } from '@/shared/types/api'
+import { ApiMessage, apiMessages } from '@/shared/consts/apiMessages'
+import type { IBaseResponse, IErrorResponseData } from '@/shared/types/api'
 
 type RegisterByEmailData = Omit<RegisterByEmailFormValues, 'repeatPassword' | 'isAgree'>
 
@@ -21,7 +21,7 @@ export const registerByEmailAsync = async (data: RegisterByEmailData) => {
 		const response = await $api.post<RegisterByEmailResponse>('/register', data)
 		
 		if (!response.data) {
-			throw new Error('Data is not defined')
+			throw new Error(apiMessages['empty_data'])
 		}
 			
 		localStorage.setItem(ISSUES_USER_ACCESS_TOKEN, response.data.accessToken)
@@ -57,7 +57,10 @@ export const registerByEmailAsync = async (data: RegisterByEmailData) => {
 
 		return response.data
 	} catch (e: unknown) {
-		const err = e as AxiosError
-		throw new Error(err.message)
+		const err = e as AxiosError<IErrorResponseData>
+		if (err.response?.data.message) {
+			throw new Error(apiMessages[err.response.data.message])
+		}
+		throw new Error(apiMessages['server_error'])
 	}
 }

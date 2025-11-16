@@ -1,6 +1,6 @@
 import { Card } from '@/shared/UI/Card'
 
-export const ForgetPasswordPage = () => {
+const ForgetPasswordPage = () => {
 	return (
 		<article>
 			<Card showBorder>
@@ -9,3 +9,5 @@ export const ForgetPasswordPage = () => {
 		</article>
 	)
 }
+
+export default ForgetPasswordPage
