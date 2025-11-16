@@ -1,1 +1,1 @@
-export { ForgetPasswordPage } from './ui/ForgetPasswordPage/ForgetPasswordPage'
+export { ForgetPasswordPage } from './ui/ForgetPasswordPage/ForgetPasswordPage.async'

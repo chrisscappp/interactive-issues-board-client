@@ -1,3 +1,5 @@
+import type { ApiMessage } from '../consts/apiMessages'
+
 export interface IGeneral {
 	id: string | number,
 	createdAt: Date,
@@ -6,4 +8,8 @@ export interface IGeneral {
 
 export interface IBaseResponse {
 	message: string
+}
+
+export interface IErrorResponseData {
+	message: ApiMessage
 }
