@@ -10,7 +10,6 @@ import type { IBaseResponse, IErrorResponseData } from '@/shared/types/api'
 type RegisterByEmailData = Omit<RegisterByEmailFormValues, 'repeatPassword' | 'isAgree'>
 
 export interface RegisterByEmailResponse extends IBaseResponse {
-	message: string,
 	accessToken: string,
 	refreshToken: string,
 	user: IUser

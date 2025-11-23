@@ -1,13 +1,14 @@
-import { Card } from '@/shared/UI/Card'
+import { ForgetPassword } from '@/feautures/ForgetPassword'
+import { VStack } from '@/shared/UI/Stack'
+import { memo } from 'react'
 
-const ForgetPasswordPage = () => {
+const ForgetPasswordPage = memo(() => {
+
 	return (
-		<article>
-			<Card showBorder>
-				forget password
-			</Card>
-		</article>
+		<VStack tag="article" max>
+			<ForgetPassword/>
+		</VStack>
 	)
-}
+})
 
 export default ForgetPasswordPage

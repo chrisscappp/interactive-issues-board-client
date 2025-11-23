@@ -1,0 +1,21 @@
+.TextArea {
+	border-radius: 5px;
+	padding: 14px 20px;
+	outline: none;
+	width: 100%;
+	background: var(--input-bg-color);
+	font-size: var(--font-size-m-text);
+	resize: none;
+	border: 2px solid black;
+	border: 1.5px solid var(--primary-text-color);
+	color: #131313;
+}
+
+.blur {
+	border: 2px solid var(--input-focused-color);
+}
+
+.readonly {
+	opacity: 0.7;
+	border: none;
+}

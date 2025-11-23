@@ -7,7 +7,7 @@ export interface IGeneral {
 }
 
 export interface IBaseResponse {
-	message: string
+	message: ApiMessage
 }
 
 export interface IErrorResponseData {
