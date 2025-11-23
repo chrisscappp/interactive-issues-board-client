@@ -55,7 +55,8 @@ const AuthByEmailForm = memo((props: AuthByEmailFormProps) => {
 					/>
 					<Link
 						className={cls.forgetPassword} 
-						to={'/forgetPassword'} 
+						to='/forgetPassword'
+						search={{ mode: 'base' }}
 						target="_blank"
 					>
 						<Text

@@ -11,10 +11,10 @@
 import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ForgetPasswordRouteImport } from './routes/forgetPassword'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
 
-const ForgetPasswordLazyRouteImport = createFileRoute('/forgetPassword')()
 const AboutLazyRouteImport = createFileRoute('/about')()
 const AuthenticatedBoardsLazyRouteImport = createFileRoute(
   '/_authenticated/boards',
@@ -23,18 +23,16 @@ const AuthenticatedProfileProfileidLazyRouteImport = createFileRoute(
   '/_authenticated/profile/$profileid',
 )()
 
-const ForgetPasswordLazyRoute = ForgetPasswordLazyRouteImport.update({
-  id: '/forgetPassword',
-  path: '/forgetPassword',
-  getParentRoute: () => rootRouteImport,
-} as any).lazy(() =>
-  import('./routes/forgetPassword.lazy').then((d) => d.Route),
-)
 const AboutLazyRoute = AboutLazyRouteImport.update({
   id: '/about',
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any).lazy(() => import('./routes/about.lazy').then((d) => d.Route))
+const ForgetPasswordRoute = ForgetPasswordRouteImport.update({
+  id: '/forgetPassword',
+  path: '/forgetPassword',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
@@ -64,15 +62,15 @@ const AuthenticatedProfileProfileidLazyRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/forgetPassword': typeof ForgetPasswordRoute
   '/about': typeof AboutLazyRoute
-  '/forgetPassword': typeof ForgetPasswordLazyRoute
   '/boards': typeof AuthenticatedBoardsLazyRoute
   '/profile/$profileid': typeof AuthenticatedProfileProfileidLazyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/forgetPassword': typeof ForgetPasswordRoute
   '/about': typeof AboutLazyRoute
-  '/forgetPassword': typeof ForgetPasswordLazyRoute
   '/boards': typeof AuthenticatedBoardsLazyRoute
   '/profile/$profileid': typeof AuthenticatedProfileProfileidLazyRoute
 }
@@ -80,8 +78,8 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteWithChildren
+  '/forgetPassword': typeof ForgetPasswordRoute
   '/about': typeof AboutLazyRoute
-  '/forgetPassword': typeof ForgetPasswordLazyRoute
   '/_authenticated/boards': typeof AuthenticatedBoardsLazyRoute
   '/_authenticated/profile/$profileid': typeof AuthenticatedProfileProfileidLazyRoute
 }
@@ -89,18 +87,18 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/about'
     | '/forgetPassword'
+    | '/about'
     | '/boards'
     | '/profile/$profileid'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/forgetPassword' | '/boards' | '/profile/$profileid'
+  to: '/' | '/forgetPassword' | '/about' | '/boards' | '/profile/$profileid'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
-    | '/about'
     | '/forgetPassword'
+    | '/about'
     | '/_authenticated/boards'
     | '/_authenticated/profile/$profileid'
   fileRoutesById: FileRoutesById
@@ -108,24 +106,24 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
+  ForgetPasswordRoute: typeof ForgetPasswordRoute
   AboutLazyRoute: typeof AboutLazyRoute
-  ForgetPasswordLazyRoute: typeof ForgetPasswordLazyRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/forgetPassword': {
-      id: '/forgetPassword'
-      path: '/forgetPassword'
-      fullPath: '/forgetPassword'
-      preLoaderRoute: typeof ForgetPasswordLazyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/about': {
       id: '/about'
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutLazyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forgetPassword': {
+      id: '/forgetPassword'
+      path: '/forgetPassword'
+      fullPath: '/forgetPassword'
+      preLoaderRoute: typeof ForgetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated': {
@@ -177,8 +175,8 @@ const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRoute: AuthenticatedRouteWithChildren,
+  ForgetPasswordRoute: ForgetPasswordRoute,
   AboutLazyRoute: AboutLazyRoute,
-  ForgetPasswordLazyRoute: ForgetPasswordLazyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
