@@ -1,5 +1,5 @@
 import { usePopup } from '../../../../lib/hooks/usePopup/usePopup'
-import { memo, type ReactNode } from 'react'
+import { memo } from 'react'
 import { Portal } from '../../../Portal'
 import { classNames, type Mods } from '../../../../lib/helpers/classNames/classNames'
 import cls from './Drawer.module.scss'
@@ -8,16 +8,9 @@ import { Overlay } from '../../../Overlay'
 import { Button } from '../../../Button'
 import { Icon } from '../../../Icon'
 import CrossIcon from '../../../../assets/icons/cross-black-64.svg'
+import type { PopupProps } from '../Modal/Modal'
 
-interface DrawerProps {
-	className?: string,
-	isOpen: boolean,
-	onClose: () => void,
-	hideCross?: boolean,
-	children?: ReactNode
-}
-
-export const Drawer = memo((props: DrawerProps) => {
+export const Drawer = memo((props: PopupProps) => {
 	
 	const {
 		isOpen,

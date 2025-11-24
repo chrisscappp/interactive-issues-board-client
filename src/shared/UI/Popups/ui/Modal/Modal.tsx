@@ -9,7 +9,7 @@ import { Button } from '../../../Button'
 import { usePopup } from '../../../../lib/hooks/usePopup/usePopup'
 import { Overlay } from '../../../Overlay'
 
-interface ModalProps {
+export interface PopupProps {
 	className?: string,
 	isOpen: boolean,
 	onClose: () => void,
@@ -17,7 +17,7 @@ interface ModalProps {
 	children?: ReactNode
 }
 
-export const Modal = memo((props: ModalProps) => {
+export const Modal = memo((props: PopupProps) => {
 
 	const { 
 		className,
